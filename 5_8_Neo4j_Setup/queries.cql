@@ -23,4 +23,6 @@ ORDER BY friends DESC, name ASC;
 MATCH (source:Actor {name: 'Sigourney Weaver'}), (destination:Actor {name: 'Sandy Dennis'})
 CALL apoc.algo.dijkstra(source, destination, 'ACTED_IN', '1')
 YIELD path, weight
-RETURN (length(path)/2) -1 AS seperation;
+RETURN (length(path)/2) -1 AS seperation; // TODO: SQL version
+
+// How might you include recommendations in Neo4j?

@@ -1,0 +1,23 @@
+"a"
+query ActorMovies {
+  actors(where: {name: { eq: "Sigourney Weaver" } }) {
+    name
+    actedInMovies {
+      title
+      id
+    }
+  }
+}
+
+"b"
+query ActorMovies {
+  actors(where: {name: { eq: "Sigourney Weaver" } }) {
+    name
+    actedInMovies {
+      title
+      hasGenreGenres {
+        name
+      }
+    }
+  }
+}
