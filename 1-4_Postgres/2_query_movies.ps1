@@ -1,0 +1,1 @@
+Get-Content "$PSScriptRoot/2_query_movies.pgsql" | docker exec -i postgres psql -U admin -d movies 
