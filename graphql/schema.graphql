@@ -1,0 +1,36 @@
+type Actor @node {
+	actedInMovies: [Movie!]! @relationship(type: "ACTED_IN", direction: OUT)
+	id: BigInt!
+	name: String!
+}
+
+type Genre @node {
+	moviesHasGenre: [Movie!]! @relationship(type: "HAS_GENRE", direction: IN, properties: "HasGenreProperties")
+	name: String!
+	position: BigInt!
+}
+
+type HasGenreProperties @relationshipProperties {
+	strength: BigInt!
+}
+
+type LikesProperties @relationshipProperties {
+	rating: BigInt!
+}
+
+type Movie @node {
+	actorsActedIn: [Actor!]! @relationship(type: "ACTED_IN", direction: IN)
+	genre: [BigInt!]!
+	hasGenreGenres: [Genre!]! @relationship(type: "HAS_GENRE", direction: OUT, properties: "HasGenreProperties")
+	id: BigInt!
+	peopleLikes: [Person!]! @relationship(type: "LIKES", direction: IN, properties: "LikesProperties")
+	title: String!
+}
+
+type Person @node {
+	friendsWithPeople: [Person!]! @relationship(type: "FRIENDS_WITH", direction: OUT)
+	id: BigInt!
+	likesMovies: [Movie!]! @relationship(type: "LIKES", direction: OUT, properties: "LikesProperties")
+	name: String!
+	peopleFriendsWith: [Person!]! @relationship(type: "FRIENDS_WITH", direction: IN)
+}
