@@ -1,0 +1,31 @@
+services:
+    postgres:
+        image: postgres:18.0-alpine3.22
+        container_name: "postgres"
+        ports:
+            - 5432:5432
+        volumes:
+            - postgres-data:/var/lib/postgresql
+        environment:
+            - POSTGRES_USER=admin
+            - POSTGRES_PASSWORD=admin
+    neo4j: 
+        image: neo4j:latest
+        container_name: "neo4j"
+        ports:
+            - 7474:7474
+            - 7687:7687
+        volumes:
+            - neo4j-data:/data
+
+        environment:
+            - NEO4J_AUTH=neo4j/admin
+            - NEO4J_dbms_security_auth__minimum__password__length=5
+            - NEO4J_server_directories_import=import
+            - NEO4J_PLUGINS=["apoc", "apoc-extended", "graph-data-science"]
+            - NEO4J_dbms_security_procedures_unrestricted=apoc.*,gds.*
+            - NEO4J_apoc_import_file_enabled=true
+            - NEO4J_apoc_import_file_use_neo4j_config=true
+volumes:
+    postgres-data:
+    neo4j-data:

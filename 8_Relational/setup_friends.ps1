@@ -1,0 +1,1 @@
+Get-Content "$PSScriptRoot/setup_friends.pgsql" | docker exec -i postgres psql -U admin -d movies 

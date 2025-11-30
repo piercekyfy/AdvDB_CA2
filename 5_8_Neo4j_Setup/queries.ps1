@@ -1,0 +1,1 @@
+Get-Content "$PSScriptRoot/queries.cql" | docker exec -i neo4j cypher-shell -u neo4j -p admin
